@@ -19,5 +19,5 @@ NOT tested yet, i am not ready (yet) to do so.
 ## TEST ##
 
 Theres an Object within the Testform which will be **serialized**.  
-Then you can make changes to it and click *deserialize* and it will be loaded back and a Mesagebox will show its (new) name.  
+Then you can make changes to it and click **deserialize** and it will be loaded back and a Mesagebox will show its (new) name.  
 You can also watch your refreshed object with the Debugger ;)
