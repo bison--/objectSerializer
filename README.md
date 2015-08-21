@@ -14,7 +14,7 @@ It takes one object and ALL its (public) properties/getter and setter and dumps 
 * arrays: OK; generic lists: OK; dictionarys: LOLNOPE
 
 SHOULD work with **Unity3D**, because its .net 2.0 and 100% board tools.  
-NOT testes yet, i am not ready (yet) to do so.
+NOT tested yet, i am not ready (yet) to do so.
 
 ## TEST ##
 
