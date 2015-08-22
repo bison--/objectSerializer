@@ -7,7 +7,7 @@ using System;
 public class someInfoSample : MonoBehaviour {
     public int id = 7;
     public int HP = 100;
-    public string name = "Dave";
+    public string myName = "Dave";
 
 	// Use this for initialization
 	void Start () {

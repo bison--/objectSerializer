@@ -35,7 +35,11 @@ namespace serializer {
         public static GameObject simulatorToGameObject(gameObjectSimulator goS) {
             loadAllPrefabs();
             foreach (GameObject prefab in allPrefabs) {
-                if (prefab.name == goS.objectName) {
+                //if (prefab.name == goS.objectName) {
+                //(Clone)
+
+                // contains MIGHT be dangerous... AGAIN!?
+                if (goS.objectName.Contains(prefab.name )) {
                     //Instantiate(global::UnityEngine.Object) - C:\Users\Gamer\Dropbox\Source\c#\objectSerializer\serializerTest\Library\UnityAssemblies\UnityEngine.dll
                     return (GameObject)UnityEngine.Object.Instantiate(prefab, goS.position, goS.rotation);
                 }
