@@ -10,10 +10,39 @@ namespace serializer {
         public Vector3 position;
         public Quaternion rotation;
         public Vector3 scale;
+        public string objectName;
+        public string objectType;
         public List<object> subScripts = new List<object>();
     }
 
     public static class clsHelper {
+        //define a list
+        public static List<GameObject> allPrefabs = new List<GameObject>();
+        public static bool loadAllPrefabs() {
+            if (allPrefabs.Count > 0) {
+                return false;
+            }
+            //Important note: place your prefabs folder(or levels or whatever) 
+            //in a folder called "Resources" like this "Assets/Resources/Prefabs"
+            UnityEngine.Object[] subListObjects = Resources.LoadAll("Prefabs", typeof(GameObject));
+            foreach (GameObject subListObject in subListObjects) {
+                GameObject lo = (GameObject)subListObject;
+                allPrefabs.Add(lo);
+            }
+            return true;
+        }
+
+        public static GameObject simulatorToGameObject(gameObjectSimulator goS) {
+            loadAllPrefabs();
+            foreach (GameObject prefab in allPrefabs) {
+                if (prefab.name == goS.objectName) {
+                    //Instantiate(global::UnityEngine.Object) - C:\Users\Gamer\Dropbox\Source\c#\objectSerializer\serializerTest\Library\UnityAssemblies\UnityEngine.dll
+                    return (GameObject)UnityEngine.Object.Instantiate(prefab, goS.position, goS.rotation);
+                }
+            }
+            return null;
+        }
+
         public static gameObjectSimulator gameObjectToSimulator(GameObject go) {
             saveMe savME = go.GetComponent<saveMe>() ;
             if (savME != null) {
@@ -21,12 +50,14 @@ namespace serializer {
                 goS.position = go.transform.position;
                 goS.rotation = go.transform.rotation;
                 goS.scale = go.transform.localScale;
-
-                foreach (var component in go.GetComponents<Component>()) {
+                goS.objectName = go.name;
+                goS.objectType = go.GetType().ToString();
+                // get scipts attached to the object... lolnope :*(
+                /*foreach (var component in go.GetComponents<Component>()) {
                     if (savME.scriptAllowed(component.ToString())) {
                         goS.subScripts.Add(component);
                     }
-                }
+                }*/
 
                 return goS;
             }

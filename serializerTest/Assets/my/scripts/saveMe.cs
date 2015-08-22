@@ -14,10 +14,11 @@ public class saveMe : MonoBehaviour {
 	}
 
     public bool scriptAllowed(string scriptName) {
-        Debug.Log(scriptName);
+        
         foreach (string sName in scriptNames) {
             // contains COULD be dangerous!
             if (sName == scriptName || scriptName.Contains(sName)) {
+                Debug.Log("script OK:" + scriptName);
                 return true;
             }
         }
