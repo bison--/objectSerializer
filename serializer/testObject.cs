@@ -44,5 +44,8 @@ namespace serializer {
             itemAr = helper.Redim<item>(itemAr, true);
             itemAr[itemAr.Length - 1] = itm;
         }
+
+        // no dictionarys for you :*(
+        //public Dictionary<int, string> clothes = new Dictionary<int, string>();
     }
 }
